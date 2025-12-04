@@ -29,7 +29,7 @@ const Profile = () => {
     const fetchProgress = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/progress",
+          "https://dsa-tracker-0exz.onrender.com/api/progress",
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -25,7 +25,7 @@ const DSASheets = () => {
   useEffect(() => {
     const fetchSheets = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/sheets");
+        const res = await axios.get("https://dsa-tracker-0exz.onrender.com/api/sheets");
         setSheets(res.data.sheets);
       } catch (error) {
         console.error("Fetch sheets error:", error);

@@ -8,7 +8,7 @@ const AdminAllSheets = () => {
   // ✅ Fetch all sheets from DB
   const fetchSheets = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/sheets");
+      const res = await axios.get("https://dsa-tracker-0exz.onrender.com/api/sheets");
       setSheets(res.data.sheets);
     } catch (error) {
       console.error("Fetch sheets error:", error);
@@ -28,7 +28,7 @@ const AdminAllSheets = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/sheets/${id}`, {
+      await axios.delete(`https://dsa-tracker-0exz.onrender.com/api/sheets/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

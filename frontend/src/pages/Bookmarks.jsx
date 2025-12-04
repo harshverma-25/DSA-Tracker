@@ -13,7 +13,7 @@ const Bookmarks = () => {
       try {
         // ✅ Get bookmarks
         const bookmarkRes = await axios.get(
-          "http://localhost:5000/api/bookmarks",
+          "https://dsa-tracker-0exz.onrender.com/api/bookmarks",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -25,7 +25,7 @@ const Bookmarks = () => {
 
         // ✅ Get solved progress
         const progressRes = await axios.get(
-          "http://localhost:5000/api/progress",
+          "https://dsa-tracker-0exz.onrender.com/api/progress",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ const Bookmarks = () => {
   const removeBookmark = async (questionId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/bookmarks/${questionId}`,
+        `https://dsa-tracker-0exz.onrender.com/api/bookmarks/${questionId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

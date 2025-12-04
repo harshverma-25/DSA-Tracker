@@ -20,7 +20,7 @@ const AdminCreateSheet = () => {
       setLoading(true);
 
       await axios.post(
-        "http://localhost:5000/api/sheets",
+        "https://dsa-tracker-0exz.onrender.com/api/sheets",
         { title, description, image }, // ✅ image sent
         {
           headers: {

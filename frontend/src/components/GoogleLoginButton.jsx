@@ -10,7 +10,7 @@ const GoogleLoginButton = () => {
       const token = credentialResponse.credential;
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/google-login",
+        "https://dsa-tracker-0exz.onrender.com/api/auth/google-login",
         { token }
       );
 

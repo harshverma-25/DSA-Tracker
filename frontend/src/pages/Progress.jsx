@@ -14,14 +14,14 @@ const Progress = () => {
       try {
         // ✅ 1. Fetch all sheets
         const sheetRes = await axios.get(
-          "http://localhost:5000/api/sheets"
+          "https://dsa-tracker-0exz.onrender.com/api/sheets"
         );
         const allSheets = sheetRes.data.sheets;
         setSheets(allSheets);
 
         // ✅ 2. Fetch all progress
         const progressRes = await axios.get(
-          "http://localhost:5000/api/progress",
+          "https://dsa-tracker-0exz.onrender.com/api/progress",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -37,7 +37,7 @@ const Progress = () => {
 
         for (let sheet of allSheets) {
           const quesRes = await axios.get(
-            `http://localhost:5000/api/questions/${sheet._id}`
+            `https://dsa-tracker-0exz.onrender.com/api/questions/${sheet._id}`
           );
           sheetQuestionMap[sheet._id] = quesRes.data.questions;
         }

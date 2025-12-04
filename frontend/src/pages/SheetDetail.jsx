@@ -20,20 +20,20 @@ const SheetDetail = () => {
       try {
         // 1) Sheet info
         const sheetRes = await axios.get(
-          `http://localhost:5000/api/sheets/${sheetId}`
+          `https://dsa-tracker-0exz.onrender.com/api/sheets/${sheetId}`
         );
         setSheet(sheetRes.data.sheet);
 
         // 2) Questions
         const quesRes = await axios.get(
-          `http://localhost:5000/api/questions/${sheetId}`
+          `https://dsa-tracker-0exz.onrender.com/api/questions/${sheetId}`
         );
         setQuestions(quesRes.data.questions);
 
         // 3) Solved progress (only if logged in)
         if (token) {
           const progressRes = await axios.get(
-            "http://localhost:5000/api/progress",
+            "https://dsa-tracker-0exz.onrender.com/api/progress",
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ const SheetDetail = () => {
   const toggleSolved = async (questionId) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/progress",
+        "https://dsa-tracker-0exz.onrender.com/api/progress",
         { questionId },
         {
           headers: {
@@ -84,7 +84,7 @@ const SheetDetail = () => {
   const addBookmark = async (questionId) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/bookmarks",
+        "https://dsa-tracker-0exz.onrender.com/api/bookmarks",
         { questionId },
         {
           headers: {
@@ -106,7 +106,7 @@ const SheetDetail = () => {
   const removeBookmark = async (questionId) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/bookmarks/${questionId}`,
+        `https://dsa-tracker-0exz.onrender.com/api/bookmarks/${questionId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
