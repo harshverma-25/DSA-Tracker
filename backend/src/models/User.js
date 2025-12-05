@@ -4,8 +4,8 @@ const userSchema = new mongoose.Schema(
   {
     googleId: {
       type: String,
-      required: true,
-      unique: true,
+      unique: true,      // ✅ unique rahe
+      sparse: true,     // ✅ multiple null allow honge (IMPORTANT FIX)
     },
 
     name: {
