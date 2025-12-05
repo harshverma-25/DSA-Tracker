@@ -17,9 +17,17 @@ export const googleLogin = async (req, res) => {
     const payload = ticket.getPayload();
     const { sub, name, email, picture } = payload;
 
-    // ✅ Check if user exists
+    // ✅ Find user by email
     let user = await User.findOne({ email });
 
+    // ✅ CASE 1: User exists but googleId missing (OLD USER)
+    if (user && !user.googleId) {
+      user.googleId = sub;
+      user.profilePic = picture;
+      await user.save();
+    }
+
+    // ✅ CASE 2: Totally new user
     if (!user) {
       user = await User.create({
         googleId: sub,
@@ -36,16 +44,29 @@ export const googleLogin = async (req, res) => {
       { expiresIn: "7d" }
     );
 
+    // ✅ CLEAN USER OBJECT (FRONTEND SAFE)
+    const cleanUser = {
+      id: user._id.toString(),
+      email: user.email,
+      name: user.name,
+      profilePic: user.profilePic,
+      googleId: user.googleId,
+    };
+
     res.status(200).json({
       success: true,
-      token: jwtToken, // ✅ SEND TOKEN TO FRONTEND
-      user,
+      token: jwtToken,
+      user: cleanUser,
     });
+
+    console.log("✅ Google login successful for:", email);
+
   } catch (error) {
-    console.error("Google Login Error:", error);
+    console.error("❌ Google Login Error:", error.message);
+
     res.status(500).json({
       success: false,
-      message: "Google login failed",
+      message: "Google login failed. Please try again.",
     });
   }
 };
